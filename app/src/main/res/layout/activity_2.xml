@@ -11,6 +11,7 @@
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:onClick="onClick"
         android:text="@string/e"
         app:layout_constraintEnd_toStartOf="@+id/button6"
@@ -20,7 +21,9 @@
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
         android:onClick="onClick"
         android:text="@string/a"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +32,9 @@
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
         android:onClick="onClick"
         android:text="@string/d"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +43,8 @@
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:onClick="onClick"
         android:text="@string/b"
         app:layout_constraintEnd_toStartOf="@+id/button3"
@@ -48,7 +54,9 @@
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="40dp"
         android:onClick="onClick"
         android:text="@string/c"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,17 +66,20 @@
         android:id="@+id/textViewClicky"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
         android:text="@string/pressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.19999999" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
         android:onClick="onClick"
         android:text="@string/f"
         app:layout_constraintEnd_toEndOf="parent"

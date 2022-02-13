@@ -48,9 +48,8 @@ public class Activity3 extends AppCompatActivity implements ExampleDialog.Exampl
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //int pos = 0;
                 openDialog();
-                //addItem(pos, textViewName.getContext().toString(), textViewURL.getContext().toString());
+
             }
         });
 
@@ -146,8 +145,8 @@ public class Activity3 extends AppCompatActivity implements ExampleDialog.Exampl
                 String url = itemList.get(position).getItemDesc();
 
                 //TODO item click
-
-
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
 
                 rviewAdapter.notifyItemChanged(position);
 
@@ -166,14 +165,6 @@ public class Activity3 extends AppCompatActivity implements ExampleDialog.Exampl
     private void addItem(int position, String name, String url) {
         itemList.add(position, new ItemCard( name, url ));
 
-        //TODO add snack bar message
-        //Toast.makeText(Activity3.this, "Add an item", Toast.LENGTH_SHORT).show();
-        /*
-        Snackbar snackbar = Snackbar
-                .make(coordinatorLayout, name+"is successfully created!", Snackbar.LENGTH_LONG);
-        snackbar.show();
-
-         */
         rviewAdapter.notifyItemInserted(position);
     }
 

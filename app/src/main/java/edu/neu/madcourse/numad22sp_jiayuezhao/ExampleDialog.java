@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.URLUtil;
@@ -12,6 +13,10 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.google.android.material.snackbar.Snackbar;
+
 
 public class ExampleDialog extends AppCompatDialogFragment {
     private EditText editTextName;
@@ -36,10 +41,17 @@ public class ExampleDialog extends AppCompatDialogFragment {
                 .setPositiveButton("submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
+
                         String name = editTextName.getText().toString();
                         String url = editTextURL.getText().toString();
+                        if(!(Patterns.WEB_URL.matcher(url).matches()) && !(URLUtil.isValidUrl(url))){
+                            listener.sendSnackBar(false);
+                            editTextURL.getText().clear();
 
-                        listener.applyTexts(name, url);
+                        }else{
+                            listener.sendSnackBar(true);
+                            listener.applyTexts(name, url);
+                        }
 
                     }
                 });
@@ -61,6 +73,8 @@ public class ExampleDialog extends AppCompatDialogFragment {
 
     public interface ExampleDialogListener{
         void applyTexts(String name, String url);
+
+        void sendSnackBar(boolean b);
     }
 
 

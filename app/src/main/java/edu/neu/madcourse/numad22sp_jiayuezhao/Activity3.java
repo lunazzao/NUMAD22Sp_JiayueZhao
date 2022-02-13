@@ -9,13 +9,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,7 +31,6 @@ public class Activity3 extends AppCompatActivity implements ExampleDialog.Exampl
     private RviewAdapter rviewAdapter;
     private RecyclerView.LayoutManager rLayoutManger;
     private FloatingActionButton addButton;
-    CoordinatorLayout coordinatorLayout;
 
 
     private static final String KEY_OF_INSTANCE = "KEY_OF_INSTANCE";
@@ -62,6 +65,19 @@ public class Activity3 extends AppCompatActivity implements ExampleDialog.Exampl
     @Override
     public void applyTexts(String name, String url) {
         addItem(0, name, url);
+    }
+
+    @Override
+    public void sendSnackBar(boolean b) {
+        if(!b){
+            Snackbar snackbar = Snackbar
+                .make(findViewById(R.id.activity3_main), "error! try again!", Snackbar.LENGTH_LONG);
+        snackbar.show();
+        } else{
+            Snackbar snackbar = Snackbar
+                    .make(findViewById(R.id.activity3_main), "success!", Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
     }
 
 
@@ -127,14 +143,10 @@ public class Activity3 extends AppCompatActivity implements ExampleDialog.Exampl
             public void onItemClick(int position) {
                 //attributions bond to the item has been changed
                 //itemList.get(position).onItemClick(position);
-
                 String url = itemList.get(position).getItemDesc();
 
                 //TODO item click
 
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
 
 
                 rviewAdapter.notifyItemChanged(position);
@@ -153,6 +165,8 @@ public class Activity3 extends AppCompatActivity implements ExampleDialog.Exampl
 
     private void addItem(int position, String name, String url) {
         itemList.add(position, new ItemCard( name, url ));
+
+        //TODO add snack bar message
         //Toast.makeText(Activity3.this, "Add an item", Toast.LENGTH_SHORT).show();
         /*
         Snackbar snackbar = Snackbar
@@ -162,6 +176,7 @@ public class Activity3 extends AppCompatActivity implements ExampleDialog.Exampl
          */
         rviewAdapter.notifyItemInserted(position);
     }
+
 
 
 

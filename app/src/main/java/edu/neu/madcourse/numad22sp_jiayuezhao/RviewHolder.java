@@ -1,5 +1,7 @@
 package edu.neu.madcourse.numad22sp_jiayuezhao;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,6 +26,9 @@ public class RviewHolder extends RecyclerView.ViewHolder {
                         if (position != RecyclerView.NO_POSITION) {
 
                             listener.onItemClick(position);
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(itemDesc.getContext().toString()));
+                            itemView.getContext().startActivity(i);
                         }
                     }
                 }

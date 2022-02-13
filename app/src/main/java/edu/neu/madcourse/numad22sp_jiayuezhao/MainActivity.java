@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private Button clickybutton;
+    private Button clickbutton;
     private Button linkbutton;
 
     @Override
@@ -18,20 +18,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-        Button myButton = findViewById(R.id.clickyButton);
-        myButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) { openActivity2();
-            }
-        });
-
-        Button myButton2 = findViewById(R.id.linkButton);
-        myButton2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) { openActivity3();
-            }
-        });
 
     }
 
@@ -46,13 +32,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void openActivity2(){
+    public void openActivity2(View v){
         Intent intent = new Intent(this, Activity2.class);
         startActivity(intent);
     }
 
-    public void openActivity3(){
+    public void openActivity3(View v){
         Intent intent = new Intent(this, Activity3.class);
+        startActivity(intent);
+    }
+    public void openActivity4(View v){
+        Intent intent = new Intent(this, Activity4.class);
         startActivity(intent);
     }
 

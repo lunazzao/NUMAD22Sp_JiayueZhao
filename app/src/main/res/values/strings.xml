@@ -11,4 +11,10 @@
     <string name="pressed">Pressed: -</string>
     <string name="about_me">About Me</string>
     <string name="clicky_clicky">Clicky Clicky</string>
+    <string name="click_collector">click collector</string>
+    <string name="description">description</string>
+    <string name="item_name">item_name</string>
+    <string name="item_description">item_description</string>
+    <string name="website_name">Website Name</string>
+    <string name="website_url">Website URL</string>
 </resources>

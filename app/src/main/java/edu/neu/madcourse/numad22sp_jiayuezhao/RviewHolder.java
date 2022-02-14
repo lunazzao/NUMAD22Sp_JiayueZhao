@@ -28,6 +28,9 @@ public class RviewHolder extends RecyclerView.ViewHolder {
                         int position = getLayoutPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             String url = itemDesc.getText().toString();
+                            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                                url = "http://" + url;
+                            }
                             Log.i("Location , ", url);
                             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                             (itemView.getContext()).startActivity(browserIntent);

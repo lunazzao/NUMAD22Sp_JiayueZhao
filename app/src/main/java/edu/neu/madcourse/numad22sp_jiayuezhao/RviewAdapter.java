@@ -1,5 +1,6 @@
 package edu.neu.madcourse.numad22sp_jiayuezhao;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,12 @@ import java.util.ArrayList;
 public class RviewAdapter extends RecyclerView.Adapter<RviewHolder>{
     private final ArrayList<ItemCard> itemList;
     private ItemClickListener listener;
+    Context context;
 
     //Constructor
-    public RviewAdapter(ArrayList<ItemCard> itemList) {
+    public RviewAdapter(ArrayList<ItemCard> itemList, Context context) {
         this.itemList = itemList;
+        this.context = context;
     }
 
     public void setOnItemClickListener(ItemClickListener listener) {

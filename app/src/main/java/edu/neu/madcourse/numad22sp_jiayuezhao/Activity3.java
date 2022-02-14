@@ -54,6 +54,7 @@ public class Activity3 extends AppCompatActivity implements ExampleDialog.Exampl
         });
 
 
+
     }
 
     public void openDialog() {
@@ -136,22 +137,14 @@ public class Activity3 extends AppCompatActivity implements ExampleDialog.Exampl
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
-        rviewAdapter = new RviewAdapter(itemList);
+        rviewAdapter = new RviewAdapter(itemList, this);
         ItemClickListener itemClickListener = new ItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 //attributions bond to the item has been changed
                 //itemList.get(position).onItemClick(position);
-                String url = itemList.get(position).getItemDesc();
-
-                //TODO item click
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
-
                 rviewAdapter.notifyItemChanged(position);
-
             }
-
 
         };
         rviewAdapter.setOnItemClickListener(itemClickListener);
@@ -164,10 +157,8 @@ public class Activity3 extends AppCompatActivity implements ExampleDialog.Exampl
 
     private void addItem(int position, String name, String url) {
         itemList.add(position, new ItemCard( name, url ));
-
         rviewAdapter.notifyItemInserted(position);
     }
-
 
 
 

@@ -1,7 +1,9 @@
 package edu.neu.madcourse.numad22sp_jiayuezhao;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,8 +16,9 @@ public class RviewHolder extends RecyclerView.ViewHolder {
 
         public RviewHolder(View itemView, final ItemClickListener listener) {
             super(itemView);
-            itemName = itemView.findViewById(R.id.item_name);
-            itemDesc = itemView.findViewById(R.id.item_desc);
+            this.itemName = itemView.findViewById(R.id.item_name);
+            this.itemDesc = itemView.findViewById(R.id.item_desc);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -24,11 +27,12 @@ public class RviewHolder extends RecyclerView.ViewHolder {
                         //which item did we just tap in and get its location
                         int position = getLayoutPosition();
                         if (position != RecyclerView.NO_POSITION) {
+                            String url = itemDesc.getText().toString();
+                            Log.i("Location , ", url);
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                            (itemView.getContext()).startActivity(browserIntent);
 
                             listener.onItemClick(position);
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(itemDesc.getContext().toString()));
-                            itemView.getContext().startActivity(i);
                         }
                     }
                 }

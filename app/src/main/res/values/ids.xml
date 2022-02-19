@@ -3,6 +3,10 @@
     <item name="myTextView" type="id" />
     <item name="aboutButton" type="id" />
     <item name="clickButton" type="id" />
+    <item name="locationButton" type="id" />
     <item name="linkButton" type="id" />
+    <item name="latitude" type="id" />
+    <item name="longitude" type="id" />
     <item name="helloT" type="id" />
+    <item name="activity_5_main" type="id"/>
 </resources>

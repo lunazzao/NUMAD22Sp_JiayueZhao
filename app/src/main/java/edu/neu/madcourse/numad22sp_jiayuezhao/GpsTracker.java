@@ -22,10 +22,10 @@ class GpsTracker extends Service implements LocationListener {
     private final Context mContext;
 
     // flag for GPS status
-    boolean isGPSEnabled = false;
+    boolean gpsEnabled = false;
 
     // flag for network status
-    boolean isNetworkEnabled = false;
+    boolean networkEnabled = false;
 
     // flag for GPS status
     boolean canGetLocation = false;
@@ -53,18 +53,18 @@ class GpsTracker extends Service implements LocationListener {
             locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
 
             // getting GPS status
-            isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
             // getting network status
-            isNetworkEnabled = locationManager
+            networkEnabled = locationManager
                     .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-            if (!isGPSEnabled && !isNetworkEnabled) {
+            if (!gpsEnabled && !networkEnabled) {
                 // no network provider is enabled
             } else {
                 this.canGetLocation = true;
                 // First get location from Network Provider
-                if (isNetworkEnabled) {
+                if (networkEnabled) {
                     //check the network permission
                     if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions((Activity) mContext, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
@@ -87,7 +87,7 @@ class GpsTracker extends Service implements LocationListener {
                 }
 
                 // if GPS Enabled get lat/long using GPS Services
-                if (isGPSEnabled) {
+                if (gpsEnabled) {
                     if (location == null) {
                         //check the network permission
                         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

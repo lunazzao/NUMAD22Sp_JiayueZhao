@@ -38,7 +38,7 @@ class GpsTracker extends Service implements LocationListener {
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
 
     // The minimum time between updates in milliseconds
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 min
 
     // Declaring a Location Manager
     protected LocationManager locationManager;
@@ -74,7 +74,7 @@ class GpsTracker extends Service implements LocationListener {
                             MIN_TIME_BW_UPDATES,
                             MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
-                    Log.d("Network", "Network");
+                    //Log.d("Network", "Network");
                     if (locationManager != null) {
                         location = locationManager
                                 .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
@@ -98,7 +98,7 @@ class GpsTracker extends Service implements LocationListener {
                                 MIN_TIME_BW_UPDATES,
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
-                        Log.d("GPS Enabled", "GPS Enabled");
+                        //Log.d("GPS Enabled", "GPS Enabled");
                         if (locationManager != null) {
                             location = locationManager
                                     .getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -121,12 +121,13 @@ class GpsTracker extends Service implements LocationListener {
     /**
      * Stop using GPS listener
      * Calling this function will stop using GPS in your app
-     * */
+
     public void stopUsingGPS(){
         if(locationManager != null){
             locationManager.removeUpdates(GpsTracker.this);
         }
     }
+     * */
 
     /**
      * Function to get latitude
@@ -169,10 +170,10 @@ class GpsTracker extends Service implements LocationListener {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
         // Setting Dialog Title
-        alertDialog.setTitle("GPS is settings");
+        alertDialog.setTitle("GPS settings");
 
         // Setting Dialog Message
-        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
+        alertDialog.setMessage("GPS is not enabled.Go to settings menu?");
 
         // On pressing Settings button
         alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {

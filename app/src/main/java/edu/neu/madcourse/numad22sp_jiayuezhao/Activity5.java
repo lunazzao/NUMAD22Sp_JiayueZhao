@@ -11,16 +11,16 @@ import android.widget.TextView;
 
 public class Activity5 extends AppCompatActivity {
 
-    private GpsTracker gpsTracker;
-    private TextView tvLatitude, tvLongitude;
+    private GpsTracker tracker;
+    private TextView lat, lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_5);
 
-        tvLatitude = findViewById(R.id.latitude);
-        tvLongitude = findViewById(R.id.longitude);
+        lat = findViewById(R.id.latitude);
+        lon = findViewById(R.id.longitude);
 
         try {
             if (ContextCompat.checkSelfPermission(getApplicationContext(),
@@ -37,14 +37,14 @@ public class Activity5 extends AppCompatActivity {
     }
 
     public void getLocation(View view){
-        gpsTracker = new GpsTracker(Activity5.this);
-        if(gpsTracker.canGetLocation()){
-            double latitude = gpsTracker.getLatitude();
-            double longitude = gpsTracker.getLongitude();
-            tvLatitude.setText(String.valueOf(latitude));
-            tvLongitude.setText(String.valueOf(longitude));
+        tracker = new GpsTracker(Activity5.this);
+        if(tracker.canGetLocation()){
+            double latitude = tracker.getLatitude();
+            double longitude = tracker.getLongitude();
+            lat.setText(String.valueOf(latitude));
+            lon.setText(String.valueOf(longitude));
         }else{
-            gpsTracker.showSettingsAlert();
+            tracker.showSettingsAlert();
         }
     }
 }

@@ -21,7 +21,8 @@
         android:theme="@style/Theme.NUMAD22Sp_JiayueZhao">
         <activity
             android:name=".Activity6"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity5"
             android:exported="false" />

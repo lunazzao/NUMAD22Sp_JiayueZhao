@@ -10,29 +10,37 @@
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Get Weather"
+        android:text="By ID"
+        app:layout_constraintBottom_toTopOf="@+id/dataInput6"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-3dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="City Name"
+        android:text="by Name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toEndOf="@+id/button9"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="16dp"
         android:text="City ID"
+        app:layout_constraintBottom_toTopOf="@+id/dataInput6"
+        app:layout_constraintStart_toEndOf="@+id/button7"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="281dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/dataInput6"
@@ -41,15 +49,27 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="dataInput6"
+        android:minHeight="48dp"
+        android:text="Input city name / id"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="77dp" />
+        app:layout_constraintTop_toBottomOf="@+id/button8" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataInput6"/>
 
     <ListView
         android:id="@+id/listView6"
         android:layout_width="409dp"
         android:layout_height="479dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="123dp" />
+        app:layout_constraintTop_toBottomOf="@+id/dataInput6"
+        app:layout_constraintVertical_bias="0.75" />
 </androidx.constraintlayout.widget.ConstraintLayout>

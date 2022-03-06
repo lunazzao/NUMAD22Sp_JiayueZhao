@@ -4,21 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.List;
+
 public class Activity6 extends AppCompatActivity {
-    Button cityNameBtn, cityIDBtn, getWeatherBtn;
+    Button cityNameBtn, cityIDBtn, getWeatherbyIDBtn;
     EditText dataInputET;
     ListView lv_weatherReport;
+    private ProgressBar spinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,34 +30,88 @@ public class Activity6 extends AppCompatActivity {
 
         cityNameBtn = findViewById(R.id.button8);
         cityIDBtn = findViewById(R.id.button9);
-        getWeatherBtn = findViewById(R.id.button7);
+        getWeatherbyIDBtn = findViewById(R.id.button7);
         dataInputET = findViewById(R.id.dataInput6);
         lv_weatherReport = findViewById(R.id.listView6);
+        final WeatherDataService weather1 = new WeatherDataService(Activity6.this);
+        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.GONE);
 
-        cityNameBtn.setOnClickListener(new View.OnClickListener(){
-
+        cityIDBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RequestQueue queue = Volley.newRequestQueue(Activity6.this);
-                String url = "https://www.metaweather.com/api/location/search/?query=london";
 
-                // Request a string response from the provided URL.
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                // Display the first 500 characters of the response string.
-                                dataInputET.setText("Response is: " + response.substring(0,500));
-                            }
-                        }, new Response.ErrorListener() {
+                weather1.getCityID(dataInputET.getText().toString(), new WeatherDataService.VolleyResponseListerner() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        dataInputET.setText("That didn't work!");
+                    public void onError(String message) {
+                        Toast.makeText(Activity6.this, "something wrong", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onResponse(String cityID) {
+                        Toast.makeText(Activity6.this, "Returned a City ID of " + cityID, Toast.LENGTH_SHORT).show();
                     }
                 });
+                //Toast.makeText(Activity6.this, "Returned a City ID of "+ cityID, Toast.LENGTH_SHORT).show();
 
-// Add the request to the RequestQueue.
-                queue.add(stringRequest);
+            }
+        });
+
+        getWeatherbyIDBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinner.setVisibility(View.VISIBLE);
+                weather1.getCityForecastBYID(dataInputET.getText().toString(), new WeatherDataService.ForeCastByIDResponse() {
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(Activity6.this, "Error on this", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onResponse(List<WeatherReportModel> weatherReportModels) {
+
+                        ArrayAdapter arrayAdapter = new ArrayAdapter(Activity6.this,
+                                android.R.layout.simple_list_item_1, weatherReportModels);
+                        lv_weatherReport.setAdapter(arrayAdapter);
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        spinner.setVisibility(View.INVISIBLE);
+                    }
+                });
+                //spinner.setVisibility(View.INVISIBLE);
+                //Toast.makeText(Activity6.this, "Returned a City ID of "+ cityID, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        cityNameBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinner.setVisibility(View.VISIBLE);
+                weather1.getCityForecastBYName(dataInputET.getText().toString(), new WeatherDataService.ForeCastByNameResponse() {
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(Activity6.this, "Error on city by name", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onResponse(List<WeatherReportModel> weatherReportModels) {
+
+                        ArrayAdapter arrayAdapter = new ArrayAdapter(Activity6.this,
+                                android.R.layout.simple_list_item_1, weatherReportModels);
+                        lv_weatherReport.setAdapter(arrayAdapter);
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        spinner.setVisibility(View.INVISIBLE);
+
+                    }//
+                });
+
+                //Toast.makeText(Activity6.this, "Returned a City ID of "+ cityID, Toast.LENGTH_SHORT).show();
 
             }
         });

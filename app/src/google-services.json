@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "799566592719",
+    "firebase_url": "https://fir-demoluna-default-rtdb.firebaseio.com",
+    "project_id": "fir-demoluna",
+    "storage_bucket": "fir-demoluna.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799566592719:android:52d16e37c9712b52f9d5ba",
+        "android_client_info": {
+          "package_name": "edu.neu.madcourse.numad22sp_jiayuezhao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799566592719-v7mnqecofpvamdaem598f4dirbkd1cs3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV-r_ut5fB72r6YkpYO2TSijOq9sH7rjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799566592719-v7mnqecofpvamdaem598f4dirbkd1cs3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
